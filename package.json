@@ -4,7 +4,8 @@
   "description": "Build radiator jazz.",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine-node",
+    "test": "jasmine-node --coffee spec",
+    "watchTest": "jasmine-node spec --autotest --coffee --watch . --growl",
     "swank": "node node_modules/swank-js"
   },
   "repository": {
