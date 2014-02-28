@@ -32,13 +32,23 @@ describe "#httpResponseStream", ->
 
     expect(request.get.calledTwice).toBe true
 
+  it "should make the request with a user agent", ->
+    Bacon.fromBinder.yield()
+
+    clock.tick 5000
+
+    userAgent = request.get.args[0][0]["User-Agent"]
+    expect(userAgent).toEqual "akjones"
+
   it "should emit responses into the stream", ->
     theStream.onValue (value) ->
       expect(value).toEqual "a thing"
 
     clock.tick 5000
 
-    expect(request.get.calledWith("someurl")).toBe true
+    url = request.get.args[0][0].url
+    expect(url).toEqual "someurl"
+
     request.get.yield null, {}, "a thing"
 
   it "should emit errors if the request has issues", ->

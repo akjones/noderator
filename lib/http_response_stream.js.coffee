@@ -5,7 +5,11 @@ module.exports =
   httpResponseStream: (url) ->
     Bacon.fromBinder (sink) ->
       timer = setInterval ->
-        request.get url, (error, response, body) ->
+        options =
+          "url": url
+          "User-Agent": "akjones"
+
+        request.get options, (error, response, body) ->
           if error
             sink new Bacon.Error(error)
           else
