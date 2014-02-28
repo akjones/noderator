@@ -1,0 +1,31 @@
+{
+  "name": "noderator",
+  "version": "0.0.1",
+  "description": "Build radiator jazz.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node",
+    "swank": "node node_modules/swank-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/akjones/noderator.git"
+  },
+  "author": "Andrew Jones <akjones@thoughtworks.com>",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/akjones/noderator/issues"
+  },
+  "homepage": "https://github.com/akjones/noderator",
+  "devDependencies": {
+    "swank-js": "0.0.5",
+    "sinon": "~1.8.2"
+  },
+  "dependencies": {
+    "request": "~2.34.0",
+    "baconjs": "~0.7.4",
+    "q": "~1.0.0",
+    "coffee-script": "~1.7.1",
+    "jasmine-node": "~1.13.1"
+  }
+}
