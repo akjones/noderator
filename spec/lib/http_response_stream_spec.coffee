@@ -2,7 +2,7 @@ Bacon = require "baconjs"
 request = require "request"
 sinon = require "sinon"
 
-cc = null
+httpStream = null
 clock = null
 theStream = null
 
@@ -13,9 +13,8 @@ describe "#httpResponseStream", ->
     sinon.stub request, "get"
     clock = sinon.useFakeTimers()
 
-    cc = require "../../lib/cctray_server_stream.js.coffee"
-
-    theStream = cc.httpResponseStream "someurl"
+    httpStream = require "../../lib/http_response_stream.js.coffee"
+    theStream = httpStream.httpResponseStream "someurl"
 
   afterEach ->
     Bacon.fromBinder.restore()
