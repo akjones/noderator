@@ -90,7 +90,7 @@ describe "base streams", ->
       url = request.get.args[0][0].url
       expect(url).toEqual "someurl"
 
-      request.get.yield null, {}, '<Projects> <Project name="akjones/noderator" activity="Sleeping" lastBuildStatus="Success" /> </Projects>'
+      request.get.yield null, {}, '<Projects><Project name="akjones/noderator" activity="Sleeping" lastBuildStatus="Success" /></Projects>'
 
     it "should emit errors if the request has issues", ->
       polledStream.onError (error) ->
