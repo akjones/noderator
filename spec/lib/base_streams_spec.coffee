@@ -56,7 +56,7 @@ describe "base streams", ->
 
   describe "#polledResonseStream", ->
     beforeEach ->
-      polledStream = baseStreams.polledRequestStream { "url": "someurl", "User-Agent": "a fish" }
+      polledStream = baseStreams.polledXMLStream { "url": "someurl", "User-Agent": "a fish" }
 
     it "should create a stream", ->
       expect(Bacon.fromBinder.called).toBe true
@@ -76,16 +76,21 @@ describe "base streams", ->
       userAgent = request.get.args[0][0]["User-Agent"]
       expect(userAgent).toEqual "a fish"
 
-    it "should emit responses into the stream", ->
+    it "should emit objects into the stream", ->
       polledStream.onValue (value) ->
-        expect(value).toEqual "a thing"
+        expect(value).toEqual
+          Projects:
+            Project:
+              name: "akjones/noderator"
+              activity: "Sleeping"
+              lastBuildStatus: "Success"
 
       clock.tick 5000
 
       url = request.get.args[0][0].url
       expect(url).toEqual "someurl"
 
-      request.get.yield null, {}, "a thing"
+      request.get.yield null, {}, '<Projects> <Project name="akjones/noderator" activity="Sleeping" lastBuildStatus="Success" /> </Projects>'
 
     it "should emit errors if the request has issues", ->
       polledStream.onError (error) ->
